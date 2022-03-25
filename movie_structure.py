@@ -4,13 +4,15 @@ class Movie:
 
     def __init__(self, **kwargs):
         self.id = kwargs['id']
-        self.title_type = kwargs['titleType']
-        self.original_title = kwargs['originalTitle']
-        self.start_year = kwargs['startYear']
-        self.runtime_minuntes = kwargs['runtimeMinutes']
-        self.genres = kwargs['genres'].split(',')
+        self.titleType = kwargs['titleType']
+        self.originalTitle = kwargs['originalTitle']
+        self.startYear = kwargs['startYear']
+        self.runtimeMinutes = 0 if(kwargs['runtimeMinutes'] == '\\N') else int(
+            kwargs['runtimeMinutes'])
+        self.genres = [] if(kwargs['genres'] ==
+                            '\\N') else kwargs['genres'].split(',')
         self.rating = float(kwargs['rating'])
-        self.num_votes = kwargs['numVotes']
+        self.numVotes = int(kwargs['numVotes'])
 
         Movie.add_movie()
 
